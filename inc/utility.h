@@ -4,6 +4,13 @@
 #include <iostream>
 #include <map>
 #include <cstring>
+#include <fstream>
+#include <stdexcept>
+
+//////////////MACROS//////////////
+#define DEVICE_ID_SIZE 7
+#define MAGIC_NO_SIZE 16
+#define MAX 100
 
 using namespace std;
 

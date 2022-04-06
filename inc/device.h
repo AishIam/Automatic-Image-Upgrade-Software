@@ -13,10 +13,6 @@
 //////////////HEADER FILES//////////////
 #include <utility.h>
 
-//////////////MACROS//////////////
-#define DEVICE_ID_SIZE 6
-#define MAGIC_NO_SIZE 16
-
 /****************************************************************
 CLASS NAME      : Device
 DESCRIPTION     : Class to define and create a device simulation
