@@ -1,4 +1,3 @@
-//main.cpp
 
 #include <utility.h>
 #include <device.h>
