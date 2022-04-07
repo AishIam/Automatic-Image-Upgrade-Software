@@ -13,30 +13,30 @@ class Header{
 		
 		
 		//getters
-		char* GetDeviceID(); 			// Gets the device id that has to be synced 
-		char* GetMagicNo(); 			// gets the unique magice number
-		char* GetDeviceName();			// gets the name of the device
-		char* GetBaseAddress();			// gets the base adddress of the boot image
-		char* GetChecksum();			// gives the check which has been genrated earlier
-		char* GetBIAddress();			// gives the boot image address
-		char* GetBISize();			// gives the size of the boot image
-		char* GetBIVersion();			// gets the version of the boot image
+		char* GetDeviceID();
+		char* GetMagicNo();
+		char* GetDeviceName();
+		char* GetBaseAddress();
+		char* GetChecksum();
+		char* GetBIAddress();
+		char* GetBISize();
+		char* GetBIVersion();
 	
 	//functions	
 	public:
-		int ParseDetails(string file_name);		// function to fetch details about the boot image file
-		void DisplayDetails();				// function to display the details of the boot image file
-		string GetFileType(string file_name);	        // function to get the file type 
+		int ParseDetails(string file_name);
+		void DisplayDetails();
+		string GetFileType(string file_name);
 		
 	private:
-		char device_id[DEVICE_ID_SIZE];			// char array to hold device id
-		char magic_no[MAGIC_NO_SIZE];			// char array to hold magic no
-		char device_name[MAX];				// char array to hold device name	
-		char base_address[MAX];				// char array to hold base address
-		char checksum[MAX];				// char array to hold checksum value
-		char bootImageAddress[MAX];			// char array to hold boot Image address
-		char bootImageSize[MAX];			// char array to hold boot Image size
-		char bootImageVersion[MAX];			// char array to hold boot image version
+		char device_id[DEVICE_ID_SIZE];
+		char magic_no[MAGIC_NO_SIZE];
+		char device_name[MAX];
+		char base_address[MAX];
+		char checksum[MAX];
+		char bootImageAddress[MAX];
+		char bootImageSize[MAX];
+		char bootImageVersion[MAX];
 };
 
 #endif
