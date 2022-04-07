@@ -7,34 +7,95 @@ Header::Header(){}
 Header::~Header(){}
 
 //getters
+/****************************************************************
+FUNCTION NAME   : GetDeviceId
+DESCRIPTION     : to get Id of the device
+PARAMETERS      : nil
+RETURN          : char* : device id
+****************************************************************/
 char* Header::GetDeviceID(){
 	return this->device_id;
 }
-char* Header::GetDeviceName(){
+/****************************************************************
+FUNCTION NAME   : GetDeviceName
+DESCRIPTION     : to get the name of the device
+PARAMETERS      : nil
+RETURN          : char* : device name
+****************************************************************/
+char* Header::GetDeviceName()
+{
 	return this->device_name;
 }
-char* Header::GetMagicNo(){
+/****************************************************************
+FUNCTION NAME   : GetMagicNo
+DESCRIPTION     : To get the magic number
+PARAMETERS      : nil
+RETURN          : char* : returns the magic number
+****************************************************************/
+char* Header::GetMagicNo()
+{
 	return this->magic_no;
 }
-char* Header::GetBaseAddress(){
+/****************************************************************
+FUNCTION NAME   : GetBaseAddress
+DESCRIPTION     : To get the base address
+PARAMETERS      : nil
+RETURN          : char * : the base address
+****************************************************************/
+char* Header::GetBaseAddress()
+{
 	return this->base_address;
 }
-char* Header::GetChecksum(){
+/****************************************************************
+FUNCTION NAME   : GetChecksum
+DESCRIPTION     : gives the checksum
+PARAMETERS      : nil
+RETURN          : char * : returns checksum
+****************************************************************/
+char* Header::GetChecksum()
+{
 	return this->checksum;
 }
-char* Header::GetBIAddress(){
+/****************************************************************
+FUNCTION NAME   : GetBIAddress
+DESCRIPTION     : to get the Image Address 
+PARAMETERS      : nil
+RETURN          : char* : image address
+****************************************************************/
+char* Header::GetBIAddress()
+{
 	return this->bootImageAddress;
 }
+/****************************************************************
+FUNCTION NAME   : GetBISize
+DESCRIPTION     : get size of boot image
+PARAMETERS      : nil
+RETURN          : char* : size of boot image 
+****************************************************************/
 char* Header::GetBISize(){
 	return this->bootImageSize;
 }
-char* Header::GetBIVersion(){
+/****************************************************************
+FUNCTION NAME   : GetBIVersion
+DESCRIPTION     : get the version of the bootimage
+PARAMETERS      : nil
+RETURN          : string : Image version
+****************************************************************/
+char* Header::GetBIVersion()
+{
 	return this->bootImageVersion;
 }
 
 
 //functions
-int Header::ParseDetails(string fileName){
+/****************************************************************
+FUNCTION NAME   : ParseDetails
+DESCRIPTION     : extract details from configuration file
+PARAMETERS      : string : name of the file
+RETURN          : int : status
+****************************************************************/
+int Header::ParseDetails(string fileName)
+{
 	
 	ifstream file;
 	file.open(fileName);
@@ -59,8 +120,14 @@ int Header::ParseDetails(string fileName){
 		return 0;
 	}
 }
-
-string Header::GetFileType(string name){
+/****************************************************************
+FUNCTION NAME   : GetFileType
+DESCRIPTION     : To get type of the file 
+PARAMETERS      : string : name of the file
+RETURN          : string : description
+****************************************************************/
+string Header::GetFileType(string name)
+{
 	
 	string extension = name.substr(name.find_last_of(".")+1);
 	
@@ -83,8 +150,14 @@ string Header::GetFileType(string name){
 		return "boot image";
 	}
 }
-
-void Header::DisplayDetails(){
+/****************************************************************
+FUNCTION NAME   : DisplayDetails
+DESCRIPTION     : To display details about the Image
+PARAMETERS      : nil
+RETURN          : nil
+****************************************************************/
+void Header::DisplayDetails()
+{
 	cout << "Device id: " << this->device_id << endl;
 	cout << "Magic No: " << this->magic_no << endl;
 	cout << "Device Name: " << this->device_name << endl;
