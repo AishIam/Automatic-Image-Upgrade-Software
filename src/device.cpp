@@ -1,9 +1,9 @@
 /*******************************************************************************************
  *     FILENAME           :   device.cpp
  *     DESCRIPTION        :   definitions of the functions given in Device class
- *     DATE                NAME             REFERENCE               REASON
+ *     DATE                   REFERENCE               REASON
  *     --------------------------------------------------------------------
- *     06-04-2022		Subhadeep Saha		SRS			Sprint 2 implementation   
+ *     06-04-2022				SRS			Sprint 2 implementation   
  *
  *     Copyright © 2022 Capgemini Group  All Rights Reserved
 *****************************************************************************************/
@@ -26,8 +26,8 @@ Device::Device(char* d_id, char* m_no)
 	this->start_address = new char[asize];
 	
     this->size = asize;
-	strncpy(this->Device_id, d_id, 6);
-	strncpy(this->Magic_no, m_no, 16);
+	strcpy(this->Device_id, d_id);
+	strcpy(this->Magic_no, m_no);
 	this->header_length = SetHeader();
 }
 
@@ -39,8 +39,8 @@ RETURN          : nil
 ****************************************************************/
 Device::Device(const Device& toCopy)
 {
-    strncpy(this->Device_id, toCopy.Device_id, 6);
-    strncpy(this->Magic_no, toCopy.Magic_no, 16);
+    strcpy(this->Device_id, toCopy.Device_id);
+    strcpy(this->Magic_no, toCopy.Magic_no);
     this->size = toCopy.size;
     this->start_address = new char[this->size];
     strncpy(this->start_address, toCopy.start_address, sizeof(char)*this->size);
@@ -67,8 +67,8 @@ RETURN          : nil
 ****************************************************************/
 unsigned long int Device::SetHeader()
 {
-	strncpy(this->start_address, this->Device_id, sizeof(char)*DEVICE_ID_SIZE);
-	strncpy((this->start_address+sizeof(this->Device_id)), this->Magic_no, sizeof(char)*MAGIC_NO_SIZE);
+	strcpy(this->start_address, this->Device_id);
+	strcpy((this->start_address+sizeof(this->Device_id)), this->Magic_no);
 	return (sizeof(this->Device_id)+sizeof(this->Magic_no));
 }
 
@@ -89,6 +89,7 @@ void Device::SetPartition()
 	this->partitions["framework level"] = (partitions["libraries"] + p_size); 
 	this->partitions["file system"] = (partitions["framework level"] + p_size);
 	this->partitions["kernel module"] = (partitions["file system"] + p_size);
+	strcpy(this->partitions["kernel module"], "this is the basic initialisation");
 }
 
 /****************************************************************
@@ -126,15 +127,19 @@ void Device::SetSize(long int sz)
     this->size = sz;
 }
 
+char * Device::GetStartAddress()
+{
+	return this->start_address;
+}
 /****************************************************************
 FUNCTION NAME   : GetDeviceId
 DESCRIPTION     : To get device id
 PARAMETERS      : nil
 RETURN          : nil
 ****************************************************************/
-void Device::GetDeviceId(char *id)
+char * Device::GetDeviceId()
 {
-    id = this->Device_id;
+    return this->Device_id;
 }
 
 /****************************************************************
@@ -143,9 +148,9 @@ DESCRIPTION     : To get magic no
 PARAMETERS      : nil
 RETURN          : nil
 ****************************************************************/
-void Device::GetMagicNo(char *no)
+char * Device::GetMagicNo()
 {
-   no = this->Magic_no;
+   return this->Magic_no;
 
 }
 
@@ -182,6 +187,10 @@ unsigned long int Device::GetHeaderLength()
     return this->header_length;
 }
 
+unsigned long int Device::GetPartitionSize()
+{
+	return this->partition_size;
+}
 /****************************************************************
 FUNCTION NAME   : DisplayDevice
 DESCRIPTION     : To display all the partitions in the device
@@ -191,18 +200,19 @@ RETURN          : nil
 void Device::DisplayDevice()
 {
 	cout<< "Start of device : \t" << (void *)&this->start_address[0]<<endl;
-	/*cout<< "boot image : " << this->partitions["boot image"]<<" : "<<*this->partitions["boot image"]<<endl;
-	cout<< "application : " << this->partitions["application"]<<" : "<<*this->partitions["application"]<<endl;
-	cout<< "libraries : " << this->partitions["libraries"]<<" : "<<*this->partitions["libraries"]<<endl;
-	cout<< "framework level : " << this->partitions["framework level"]<<" : "<<*this->partitions["framework level"]<<endl;
-	cout<< "file system : " << this->partitions["file system"]<<" : "<<*this->partitions["file system"]<<endl;
-	cout<< "kernel module : " << this->partitions["kernel module"]<<" : "<<*this->partitions["kernel module"]<<endl;*/
-	cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<endl;
+	cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<" : "<<this->partitions["boot image"]<<endl;
+	cout<< "application : \t\t" << (void *)this->partitions["application"]<<" : "<<this->partitions["application"]<<endl;
+	cout<< "libraries : \t\t" << (void *)this->partitions["libraries"]<<" : "<<this->partitions["libraries"]<<endl;
+	cout<< "framework level : \t" << (void *)this->partitions["framework level"]<<" : "<<this->partitions["framework level"]<<endl;
+	cout<< "file system : \t\t" << (void *)this->partitions["file system"]<<" : "<<this->partitions["file system"]<<endl;
+	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<" : "<< this->partitions["kernel module"]<<endl;
+	
+	/*cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<endl;
 	cout<< "application : \t\t" << (void *)this->partitions["application"]<<endl;
 	cout<< "libraries : \t\t" << (void *)this->partitions["libraries"]<<endl;
 	cout<< "framework level : \t" << (void *)this->partitions["framework level"]<<endl;
 	cout<< "file system : \t\t" << (void *)this->partitions["file system"]<<endl;
-	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<endl;
+	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<endl;*/
     cout<< "End Address : \t\t"<<(void *)&(this->start_address[this->size-1])<<endl;
 	cout<< "Total Length : "<<this->size<<" bytes"<<endl;
 	

@@ -1,9 +1,9 @@
 /*******************************************************************************************
  *     FILENAME           :   device.h
  *     DESCRIPTION        :   Device class definition and prototypes of functions
- *     DATE                NAME             REFERENCE               REASON
+ *     DATE                      REFERENCE               REASON
  *     --------------------------------------------------------------------
- *     06-04-2022		Subhadeep Saha		SRS			Sprint 2 implementation   
+ *     06-04-2022					SRS			Sprint 2 implementation   
  *
  *     Copyright © 2022 Capgemini Group  All Rights Reserved
 *****************************************************************************************/
@@ -12,6 +12,7 @@
 
 //////////////HEADER FILES//////////////
 #include <utility.h>
+
 
 /****************************************************************
 CLASS NAME      : Device
@@ -31,16 +32,18 @@ class Device
         /////////seters////////
 		unsigned long int SetHeader();
 		void SetPartition();
-        void SetDeviceId(char d_id[6]);
-        void SetMagicNo(char m_no[16]);
+        void SetDeviceId(char d_id[DEVICE_ID_SIZE]);
+        void SetMagicNo(char m_no[MAGIC_NO_SIZE]);
         void SetSize(long int size);
 
         /////////geters///////
-        void GetDeviceId(char *id);
-        void GetMagicNo(char *no);
+        char * GetStartAddress();
+        char * GetDeviceId();
+        char * GetMagicNo();
         long int GetSize();
         map<string, char*> GetPartitions();
         unsigned long int GetHeaderLength();
+        unsigned long int GetPartitionSize();
 
         ////////display function///////
         void DisplayDevice();
@@ -50,8 +53,8 @@ class Device
 		long int size;
         long int partition_size;
 		unsigned long int header_length;
-		char Device_id[6];
-		char Magic_no[16];
+		char Device_id[DEVICE_ID_SIZE+1];
+		char Magic_no[MAGIC_NO_SIZE+1];
 		map<string, char *> partitions;
 
 };
