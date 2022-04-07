@@ -9,13 +9,17 @@ IFLAGS=-I$(INC)
 
 all: $(BIN)/aius_prg
 
-$(BIN)/aius_prg : $(OBJ)/main.o $(OBJ)/device.o $(OBJ)/Header.o
-	$(G++) -o aius_prg $(OBJ)/main.o $(OBJ)/device.o $(OBJ)/Header.o
+$(BIN)/aius_prg : $(OBJ)/main.o $(OBJ)/device.o $(OBJ)/Header.o $(OBJ)/Updater.o
+	$(G++) -o aius_prg $(OBJ)/main.o $(OBJ)/device.o $(OBJ)/Header.o $(OBJ)/Updater.o
 	mv aius_prg $(BIN)/
 
 $(OBJ)/main.o : $(SRC)/main.cpp $(INC)/utility.h
 	$(G++) $(CFLAGS) $(SRC)/main.cpp $(IFLAGS)
 	mv main.o $(OBJ)/
+	
+$(OBJ)/Updater.o : $(SRC)/Updater.cpp $(INC)/utility.h $(INC)/Updater.h
+	$(G++) $(CFLAGS) $(SRC)/Updater.cpp $(IFLAGS)
+	mv Updater.o $(OBJ)/
 
 $(OBJ)/device.o : $(SRC)/device.cpp $(INC)/utility.h $(INC)/device.h
 	$(G++) $(CFLAGS) $(SRC)/device.cpp $(IFLAGS)

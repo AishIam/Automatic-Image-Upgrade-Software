@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <cstring>
+#include <sstream>
 #include <fstream>
 #include <stdexcept>
 
