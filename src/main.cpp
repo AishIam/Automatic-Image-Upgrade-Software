@@ -2,6 +2,7 @@
 #include <utility.h>
 #include <device.h>
 #include <Header.h>
+#include <Updater.h>
 
 int main(int argc, char **argv)
 {
@@ -9,16 +10,14 @@ int main(int argc, char **argv)
 	int choice = 0;
 	int j = 0;
 	Header *obj[argc-1] = {0};  //array of objects of Header
-
-//	char d_id[] = "123456";
-//	char m_no[] = "1234567898765432";
-//	Device * sim_device = new Device(d_id, m_no);
-//	sim_device->SetPartition();
-//	sim_device->DisplayDevice();
-//	
-//  Device * copyDevice = new Device(*sim_device);
-//  copyDevice->SetPartition();
-//	copyDevice->DisplayDevice();
+	
+	
+	char d_id[] = "1EBH56";
+	char m_no[] = "1234567898765432";
+	Device * sim_device = new Device(d_id, m_no);
+	sim_device->SetPartition();
+	
+	Updater *updtr;
 
 	cout << "\n\n========================= AUTOMATIC IMAGE UPDATE SOFTWARE ============================" << endl << endl;
 	try{
@@ -60,12 +59,18 @@ int main(int argc, char **argv)
 						break;
 					case 2:
 						cout << "\n=================== Device details ========================" << endl;
-						//sim_device->DisplayDevice();
+						sim_device->DisplayDevice();
 						break;
 						
 					case 3:
 						for(j=0; j < argc-1; j++){
 							//call update function
+							if(obj[j]!=NULL)
+							{
+								updtr = new Updater(sim_device, obj[j], argv[j+1]);
+								updtr->InstallDownload();
+								
+							}
 						}
 						
 						break;
@@ -92,9 +97,10 @@ int main(int argc, char **argv)
 	for(int i = 0; i<argc-1; i++){
 		delete obj[i];
 	}
+	
+	//delete sim_device;
+	//delete updtr;
 
-//  delete sim_device;
-//  delete copyDevice;
 
 	cout << "\n\n========================= CLOSING AUTOMATIC IMAGE UPDATE SOFTWARE ============================\n\n" << endl;
 }
