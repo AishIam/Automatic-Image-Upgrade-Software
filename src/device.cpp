@@ -89,7 +89,7 @@ void Device::SetPartition()
 	this->partitions["framework level"] = (partitions["libraries"] + p_size); 
 	this->partitions["file system"] = (partitions["framework level"] + p_size);
 	this->partitions["kernel module"] = (partitions["file system"] + p_size);
-	strcpy(this->partitions["kernel module"], "this is the basic initialisation");
+	//strcpy(this->partitions["kernel module"], "this is the basic initialisation");
 }
 
 /****************************************************************

@@ -10,7 +10,7 @@
 
 //////////////MACROS//////////////
 #define DEVICE_ID_SIZE 7
-#define MAGIC_NO_SIZE 16
+#define MAGIC_NO_SIZE 17
 #define MAX 100
 
 using namespace std;
