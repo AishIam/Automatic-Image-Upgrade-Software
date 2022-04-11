@@ -1,5 +1,5 @@
-#ifndef _UPDATER_H
-#define _UPDATER_H
+#ifndef __UPDATER_H__
+#define __UPDATER_H__
 
 #include <utility.h>
 #include <fstream>
