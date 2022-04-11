@@ -1,11 +1,11 @@
 /*******************************************************************************************
- *     FILENAME           :   Updater.h
+ *     FILENAME           :   Updater.cpp
  *     DESCRIPTION        :   Updater class definition and prototypes of functions
  *     DATE                      REFERENCE               REASON
  *     --------------------------------------------------------------------
  *     07-04-2022					SRS			Sprint 2 implementation   
  *
- *     Copyright © 2022 Capgemini Group  All Rights Reserved
+ *     Copyright Â© 2022 Capgemini Group  All Rights Reserved
 *****************************************************************************************/
 #include <Updater.h>
 
@@ -13,6 +13,7 @@
 FUNCTION NAME   : Updater
 DESCRIPTION     : Default Constructor to the Updater class
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_11
 RETURN          : nil
 ****************************************************************/
 Updater::Updater()
@@ -22,6 +23,7 @@ Updater::Updater()
 FUNCTION NAME   : Updater
 DESCRIPTION     : parameterized Constructor to the Updater class
 PARAMETERS      : Device pointer, Header pointer, String of the confoig file name
+FUNCTION TAG    : AIU_11
 RETURN          : nil
 ****************************************************************/
 Updater::Updater(Device* toCopy, Header* configFile, string fname)
@@ -35,6 +37,7 @@ Updater::Updater(Device* toCopy, Header* configFile, string fname)
 FUNCTION NAME   : InstallDownload
 DESCRIPTION     : To copy the data from the given config file to the device specified location
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_08
 RETURN          : Int, the status of the programme
 ****************************************************************/
 int Updater::InstallDownload()
@@ -92,6 +95,7 @@ int Updater::InstallDownload()
 FUNCTION NAME   : IsComplete
 DESCRIPTION     : to check the data checksum with the checksum given in the file
 PARAMETERS      : string, the data in the image
+FUNCTION TAG    : AIU_06
 RETURN          : bool, the checksum are equal are not
 ****************************************************************/
 bool Updater::IsComplete(string sent_message)
@@ -115,8 +119,9 @@ bool Updater::IsComplete(string sent_message)
 
 /****************************************************************
 FUNCTION NAME   : Revert
-DESCRIPTION     : to revert the data when the ckecksum doont match
+DESCRIPTION     : to revert the data when the ckecksum dont match
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_11
 RETURN          : nil
 ****************************************************************/
 void Updater::Revert()
@@ -132,6 +137,7 @@ void Updater::Revert()
 FUNCTION NAME   : Validate
 DESCRIPTION     : To validate the config file header details to the device details
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_06
 RETURN          : int , the status of the code
 ****************************************************************/
 int Updater::Validate()
@@ -148,6 +154,7 @@ int Updater::Validate()
 FUNCTION NAME   : ~Updater
 DESCRIPTION     : The destructor to clear all the memory
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_08
 RETURN          : nil
 ****************************************************************/
 Updater::~Updater()
@@ -160,6 +167,7 @@ Updater::~Updater()
 FUNCTION NAME   : Ones_complement
 DESCRIPTION     : Helper function to calculate the checksum of the data
 PARAMETERS      : string, the image data
+FUNCTION TAG    : AIU_04
 RETURN          : string the ones complement of the data
 ****************************************************************/
 string Ones_complement(string data)
@@ -178,6 +186,7 @@ string Ones_complement(string data)
 FUNCTION NAME   : CheckSum
 DESCRIPTION     : To get the checksum of the data stored in device as image
 PARAMETERS      : string, the image data; int, the block size
+FUNCTION TAG    : AIU_04
 RETURN          : string, the checksum value
 ****************************************************************/
 string checkSum(string data, int block_size)
@@ -257,4 +266,5 @@ string checkSum(string data, int block_size)
  
     return Ones_complement(result);
 }
+ 
  
