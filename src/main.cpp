@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 	Device * sim_device = new Device(d_id, m_no); //the simutlated device
 	sim_device->SetPartition();
 	sim_device->SetMemory();
+	//cout << sim_device->GetHeaderLength() << endl;
 	
 	cout << "\n\n========================= AUTOMATIC IMAGE UPDATE SOFTWARE ============================" << endl << endl;
 	try{

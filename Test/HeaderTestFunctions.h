@@ -33,10 +33,10 @@ class HeaderTest : public CPPUNIT_NS::TestFixture
 		void tearDown();
 
 		// method to test the method ParseDetails
-		void testParseDetails();
+		void testParseDetails();  //AIU/UT_H-01
 
 		// method to test the GetFileType method
-		void testGetFileType();
+		void testGetFileType();  //AIU/UT_H-02
 };
 
 
