@@ -24,11 +24,11 @@ class UpdaterTest : public CPPUNIT_NS::TestFixture
 
 /*************Test suites ****************/
 	CPPUNIT_TEST_SUITE( UpdaterTest );  
-	CPPUNIT_TEST( testConstructor );
-	CPPUNIT_TEST( testValidate );
-	CPPUNIT_TEST( testInstallDownload );
-	CPPUNIT_TEST( testIsComplete );
-	CPPUNIT_TEST( testRevert );
+	CPPUNIT_TEST( testConstructor );    //AIU/UT_U-01
+	CPPUNIT_TEST( testValidate );       //AIU/UT_U-02
+	CPPUNIT_TEST( testInstallDownload );  //AIU/UT_U-03
+	CPPUNIT_TEST( testIsComplete );     //AIU/UT_U-04
+	CPPUNIT_TEST( testRevert );       //AIU/UT_U-05
 	
 	CPPUNIT_TEST_SUITE_END();
 
