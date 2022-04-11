@@ -11,6 +11,7 @@ Header::~Header(){}
 FUNCTION NAME   : GetDeviceId
 DESCRIPTION     : to get Id of the device
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char* : device id
 ****************************************************************/
 char* Header::GetDeviceID(){
@@ -20,6 +21,7 @@ char* Header::GetDeviceID(){
 FUNCTION NAME   : GetDeviceName
 DESCRIPTION     : to get the name of the device
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char* : device name
 ****************************************************************/
 char* Header::GetDeviceName()
@@ -30,6 +32,7 @@ char* Header::GetDeviceName()
 FUNCTION NAME   : GetMagicNo
 DESCRIPTION     : To get the magic number
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char* : returns the magic number
 ****************************************************************/
 char* Header::GetMagicNo()
@@ -40,6 +43,7 @@ char* Header::GetMagicNo()
 FUNCTION NAME   : GetBaseAddress
 DESCRIPTION     : To get the base address
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char * : the base address
 ****************************************************************/
 char* Header::GetBaseAddress()
@@ -50,6 +54,7 @@ char* Header::GetBaseAddress()
 FUNCTION NAME   : GetChecksum
 DESCRIPTION     : gives the checksum
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char * : returns checksum
 ****************************************************************/
 char* Header::GetChecksum()
@@ -60,6 +65,7 @@ char* Header::GetChecksum()
 FUNCTION NAME   : GetBIAddress
 DESCRIPTION     : to get the Image Address 
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : char* : image address
 ****************************************************************/
 char* Header::GetBIAddress()
@@ -70,6 +76,7 @@ char* Header::GetBIAddress()
 FUNCTION NAME   : GetBISize
 DESCRIPTION     : get size of boot image
 PARAMETERS      : nil
+FUNCTION TAG    :AIU_10
 RETURN          : char* : size of boot image 
 ****************************************************************/
 char* Header::GetBISize(){
@@ -79,6 +86,7 @@ char* Header::GetBISize(){
 FUNCTION NAME   : GetBIVersion
 DESCRIPTION     : get the version of the bootimage
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : string : Image version
 ****************************************************************/
 char* Header::GetBIVersion()
@@ -92,6 +100,7 @@ char* Header::GetBIVersion()
 FUNCTION NAME   : ParseDetails
 DESCRIPTION     : extract details from configuration file
 PARAMETERS      : string : name of the file
+FUNCTION TAG    : AIU_10
 RETURN          : int : status
 ****************************************************************/
 int Header::ParseDetails(string fileName)
@@ -115,6 +124,8 @@ int Header::ParseDetails(string fileName)
 		file >> this->bootImageSize;
 		file >> this->bootImageVersion;
 		
+		
+		//this->device_id[7] = '\0';
 		return 0;
 	}
 }
@@ -122,6 +133,7 @@ int Header::ParseDetails(string fileName)
 FUNCTION NAME   : GetFileType
 DESCRIPTION     : To get type of the file 
 PARAMETERS      : string : name of the file
+FUNCTION TAG    : AIU_10
 RETURN          : string : description
 ****************************************************************/
 string Header::GetFileType(string name)
@@ -152,6 +164,7 @@ string Header::GetFileType(string name)
 FUNCTION NAME   : DisplayDetails
 DESCRIPTION     : To display details about the Image
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 void Header::DisplayDetails()
@@ -164,6 +177,10 @@ void Header::DisplayDetails()
 	cout << "bootImageAddress: " << this->bootImageAddress << "    bootImageSize: " 
 		<< this->bootImageSize <<  "    bootImageVersion: " << bootImageVersion << endl;
 }
+
+
+
+
 
 
 
