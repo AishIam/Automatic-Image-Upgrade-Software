@@ -1,24 +1,18 @@
 
+
 #include <utility.h>
 #include <Device.h>
 #include <Header.h>
 #include <Updater.h>
 
-// int main(int argc, char **argv)
-// {
-// 	char d_id[] = "123456";
-// 	char m_no[] = "1234567898765432";
-// 	Device * sim_device = new Device(d_id, m_no);
-// 	sim_device->SetPartition();
-// 	sim_device->DisplayDevice();
-	
-//   Device * copyDevice = new Device(*sim_device);
-// 	copyDevice->DisplayDevice();
 
-//   delete sim_device;
-//   delete copyDevice;
-// }
-
+/****************************************************************
+FUNCTION NAME   : main
+DESCRIPTION     : Driver Function
+PARAMETERS      : (argc , argv) -> command line arguments
+FUNCTION TAG    : AIU_01
+RETURN          : int : 0 for success
+****************************************************************/
 
 int main(int argc, char **argv)
 {
@@ -83,16 +77,15 @@ int main(int argc, char **argv)
 						
 					case 3:
 						for(j=0; j < argc-1; j++){
-							//call update function
+							
 							if(obj[j]!=NULL)
 							{
-								updtr = new Updater(sim_device, obj[j], argv[j+1]);
-								updtr->InstallDownload();
-								//delete updtr;
+								updtr = new Updater(sim_device, obj[j], argv[j+1]);			//call update function
+								updtr->InstallDownload();   
 							}
 								
 						}
-						
+						delete updtr;
 						break;
 						
 					case 4:
@@ -101,8 +94,8 @@ int main(int argc, char **argv)
 						break;
 						
 					default:
-						//When user enters an invalid choice
-						cout << "Invalid choice!\n" << endl ;
+						
+						cout << "Invalid choice!\n" << endl ;   //When user enters an invalid choice
 						break;
 				} //end switch
 
@@ -118,13 +111,12 @@ int main(int argc, char **argv)
 				if(sim_device!=nullptr)
 					delete sim_device;
 				else throw "No pointer to be freed";
-
+		
 			}
 			catch(const char * e)
 			{
 				std::cerr << e <<endl;
 			}
-			delete updtr;
 			
 			cout << "\n\n========================= CLOSING AUTOMATIC IMAGE UPDATE SOFTWARE ============================\n\n" << endl;
 	

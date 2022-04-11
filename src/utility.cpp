@@ -8,9 +8,10 @@
 ** 				        of the running code to a specified log file
 **
 ** ARGUMENTS		:	string criticality 
-**				        string message 
-**
-** RETURNS		    :	None
+**				string message
+
+** FUNCTION TAG         :       AIU_12
+** RETURNS		:	None
 **
 *************************************************************************/
  void logtrace(string criticality, string message)

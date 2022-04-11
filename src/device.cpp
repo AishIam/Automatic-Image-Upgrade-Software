@@ -5,7 +5,7 @@
  *     --------------------------------------------------------------------
  *     06-04-2022				SRS			Sprint 2 implementation   
  *
- *     Copyright © 2022 Capgemini Group  All Rights Reserved
+ *     Copyright Â© 2022 Capgemini Group  All Rights Reserved
 *****************************************************************************************/
 
 
@@ -16,6 +16,7 @@ FUNCTION NAME   : Device(Device class parameterized constructor)
 DESCRIPTION     : Constructor to the Device class to initialize values
 PARAMETERS      : char *: device id
                 : char *:magic no
+FUNCTION TAG    : AIU_08
 RETURN          : nil
 ****************************************************************/
 Device::Device(char* d_id, char* m_no)
@@ -45,6 +46,7 @@ Device::Device(char* d_id, char* m_no)
 FUNCTION NAME   : Device(Device class copy constructor)
 DESCRIPTION     : Constructor to the Device class to make a deep copy
 PARAMETERS      : Device : the class object
+FUNCTION TAG    : AIU_11
 RETURN          : nil
 ****************************************************************/
 Device::Device(const Device& toCopy)
@@ -70,6 +72,7 @@ Device::Device(const Device& toCopy)
 FUNCTION NAME   : ~Device(Device class destructor)
 DESCRIPTION     : Destructor to Device class to free up all memory used
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_08
 RETURN          : nil
 ****************************************************************/
 Device:: ~Device()
@@ -82,6 +85,7 @@ Device:: ~Device()
 FUNCTION NAME   : SetHeader
 DESCRIPTION     : To set the header to the device and add the metadata
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_04
 RETURN          : nil
 ****************************************************************/
 unsigned long int Device::SetHeader()
@@ -95,6 +99,7 @@ unsigned long int Device::SetHeader()
 FUNCTION NAME   : SetPartition
 DESCRIPTION     : To set the partition of the device and update the map
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_08
 RETURN          : nil
 ****************************************************************/
 void Device::SetPartition()
@@ -117,6 +122,13 @@ void Device::SetPartition()
 	
 	//strcpy(this->partitions["kernel module"], "this is the basic initialisation");
 }
+/****************************************************************
+FUNCTION NAME   : SetMemory
+DESCRIPTION     : To allocate memory for device's partitions
+PARAMETERS      : nil
+FUNCTION TAG    : AIU_08
+RETURN          : nil
+****************************************************************/
 
 void Device::SetMemory()
 {
@@ -133,6 +145,7 @@ void Device::SetMemory()
 FUNCTION NAME   : SetDeviceId
 DESCRIPTION     : To set the device id
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_04
 RETURN          : nil
 ****************************************************************/
 void Device::SetDeviceId(char d_id[6])
@@ -145,6 +158,7 @@ void Device::SetDeviceId(char d_id[6])
 FUNCTION NAME   : SetMagicNo
 DESCRIPTION     : To set the magic no
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_04
 RETURN          : nil
 ****************************************************************/
 void Device::SetMagicNo(char m_no[16])
@@ -154,9 +168,10 @@ void Device::SetMagicNo(char m_no[16])
 }
 
 /****************************************************************
-FUNCTION NAME   : SetMagicNo
+FUNCTION NAME   : SetSize
 DESCRIPTION     : To set the size
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_04
 RETURN          : nil
 ****************************************************************/
 void Device::SetSize(long int sz)
@@ -168,6 +183,7 @@ void Device::SetSize(long int sz)
 FUNCTION NAME   : GetStartAddress
 DESCRIPTION     : To get the start address
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_07
 RETURN          : char *, start address
 ****************************************************************/
 char * Device::GetStartAddress()
@@ -178,6 +194,7 @@ char * Device::GetStartAddress()
 FUNCTION NAME   : GetDeviceId
 DESCRIPTION     : To get device id
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 char * Device::GetDeviceId()
@@ -189,6 +206,7 @@ char * Device::GetDeviceId()
 FUNCTION NAME   : GetMagicNo
 DESCRIPTION     : To get magic no
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 char * Device::GetMagicNo()
@@ -198,9 +216,10 @@ char * Device::GetMagicNo()
 }
 
 /****************************************************************
-FUNCTION NAME   : GetMagicNo
+FUNCTION NAME   : GetSize
 DESCRIPTION     : To get size
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 long int Device::GetSize()
@@ -212,6 +231,7 @@ long int Device::GetSize()
 FUNCTION NAME   : GetPartitions
 DESCRIPTION     : To get partitions from the map
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 map<string, char*> Device::GetPartitions()
@@ -223,6 +243,7 @@ map<string, char*> Device::GetPartitions()
 FUNCTION NAME   : GetPartitions
 DESCRIPTION     : To get partitions from the map
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 unsigned long int Device::GetHeaderLength()
@@ -234,6 +255,7 @@ unsigned long int Device::GetHeaderLength()
 FUNCTION NAME   : GetPartitionSize
 DESCRIPTION     : To get partitions size
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : unsigned long int, the partition size
 ****************************************************************/
 unsigned long int Device::GetPartitionSize()
@@ -244,6 +266,7 @@ unsigned long int Device::GetPartitionSize()
 FUNCTION NAME   : DisplayDevice
 DESCRIPTION     : To display all the partitions in the device
 PARAMETERS      : nil
+FUNCTION TAG    : AIU_10
 RETURN          : nil
 ****************************************************************/
 void Device::DisplayDevice()
@@ -258,7 +281,7 @@ void Device::DisplayDevice()
 	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<" : "<< this->partitions["kernel module"]<<endl;
 	
 	
-    cout<< "End Address : \t\t"<<(void *)&(this->start_address[this->size-1])<<endl;
+        cout<< "End Address : \t\t"<<(void *)&(this->start_address[this->size-1])<<endl;
 	cout<< "Total Length : "<<this->size<<" bytes"<<endl;
 	
 	
