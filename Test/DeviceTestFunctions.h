@@ -24,7 +24,6 @@ class DeviceTest : public CPPUNIT_NS::TestFixture
 	/*************Test suites ****************/
 	CPPUNIT_TEST_SUITE( DeviceTest );  
 	CPPUNIT_TEST( testConstructor );
-	CPPUNIT_TEST( testSetPartition );
 	CPPUNIT_TEST_SUITE_END();
 	
 	/**************Test Functions *************/
@@ -33,10 +32,8 @@ class DeviceTest : public CPPUNIT_NS::TestFixture
 		void tearDown();
 
 		// method to test the constructor
-		void testConstructor();
+		void testConstructor();   //AIU/UT_D-01
 
-		// method to test the SetPartition method
-		void testSetPartition();
 };
 
 

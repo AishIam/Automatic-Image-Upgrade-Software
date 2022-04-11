@@ -7,6 +7,8 @@
 #include "DeviceTestFunctions.h"
 #include "Header.h"
 #include "HeaderTestFunctions.h"
+#include "UpdaterTestFunctions.h"
+#include "Updater.h"
 
 int main()
 {
@@ -17,5 +19,10 @@ int main()
 	runner.addTest(suite);
 	bool wasSucessful = runner.run();
 	
-	return wasSucessful ? 0 : 1;
+	if(wasSucessful){
+		cout << "Passed!" << endl;
+	}
+	else{
+		cout << "Failed!" << endl;
+	}
 }

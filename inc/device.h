@@ -29,7 +29,7 @@ class Device
         /////Destructor/////
         ~Device();
 
-        /////////seters////////
+        /////////setters////////
 		unsigned long int SetHeader();
 		void SetPartition();
         void SetDeviceId(char d_id[DEVICE_ID_SIZE]);
@@ -37,7 +37,7 @@ class Device
         void SetSize(long int size);
         void SetMemory();
 
-        /////////geters///////
+        /////////getters///////
         char * GetStartAddress();
         char * GetDeviceId();
         char * GetMagicNo();

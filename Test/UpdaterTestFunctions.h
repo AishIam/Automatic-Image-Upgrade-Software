@@ -38,19 +38,19 @@ class UpdaterTest : public CPPUNIT_NS::TestFixture
 		void tearDown();
 
 		// method to test the Constructor
-		void testConstructor();
+		void testConstructor();  //AIU/UT_U-01
 
 		// method to test the Validate method
-		void testValidate();
+		void testValidate();   //AIU/UT_U-02
 		
 		// method to test the InstallDownload method
-		void testInstallDownload();
+		void testInstallDownload();   //AIU/UT_U-03
 		
 		// method to test the IsComplete method
-		void testIsComplete();
+		void testIsComplete();   //AIU/UT_U-05
 		
 		// method to test the Revert method
-		void testRevert();
+		void testRevert();    //AIU/UT_U-06
 };
 
 
