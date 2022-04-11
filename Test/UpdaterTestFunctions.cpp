@@ -100,7 +100,6 @@ void UpdaterTest::testInstallDownload() {
 	
 	Header *header = new Header();
 	
-	header->ParseDetails("file.BAK");
 	char d_id[] = "1EBH56";
 	char m_no[] = "1234567898765432";
 	Device *dev = new Device(d_id, m_no);
