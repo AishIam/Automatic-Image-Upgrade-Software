@@ -115,8 +115,6 @@ int Header::ParseDetails(string fileName)
 		file >> this->bootImageSize;
 		file >> this->bootImageVersion;
 		
-		
-		//this->device_id[7] = '\0';
 		return 0;
 	}
 }

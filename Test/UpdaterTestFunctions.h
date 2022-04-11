@@ -1,0 +1,57 @@
+/*****************************************************************************************************
+** FILENAME       :    UpdaterTestFunctions.h
+**
+** DESCRIPTION    :   Header file for UpdaterTestFunctions.cpp containing all the test functions for Updater class
+**
+** Revision History   :    V_0.1
+**
+** DATE
+** ------------------------------------------------------------------------------------------------
+** 08 APR 2022               
+** 
+** 
+** Copyright © 2022 Capgemini Group All Rights Reserved
+**
+*****************************************************************************************************/
+
+#ifndef __UPDATERTESTFUNCTIONS_H__
+#define __UPDATERTESTFUNCTIONS_H__
+
+#include <cppunit/extensions/HelperMacros.h>
+
+class UpdaterTest : public CPPUNIT_NS::TestFixture 
+{ 
+
+/*************Test suites ****************/
+	CPPUNIT_TEST_SUITE( UpdaterTest );  
+	CPPUNIT_TEST( testConstructor );
+	CPPUNIT_TEST( testValidate );
+	CPPUNIT_TEST( testInstallDownload );
+	CPPUNIT_TEST( testIsComplete );
+	CPPUNIT_TEST( testRevert );
+	
+	CPPUNIT_TEST_SUITE_END();
+
+/**************Test Functions *************/
+	public:
+		void setUp();
+		void tearDown();
+
+		// method to test the Constructor
+		void testConstructor();
+
+		// method to test the Validate method
+		void testValidate();
+		
+		// method to test the InstallDownload method
+		void testInstallDownload();
+		
+		// method to test the IsComplete method
+		void testIsComplete();
+		
+		// method to test the Revert method
+		void testRevert();
+};
+
+
+#endif

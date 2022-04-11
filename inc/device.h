@@ -35,6 +35,7 @@ class Device
         void SetDeviceId(char d_id[DEVICE_ID_SIZE]);
         void SetMagicNo(char m_no[MAGIC_NO_SIZE]);
         void SetSize(long int size);
+        void SetMemory();
 
         /////////geters///////
         char * GetStartAddress();

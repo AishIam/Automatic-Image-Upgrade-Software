@@ -1,8 +1,24 @@
 
 #include <utility.h>
-#include <device.h>
+#include <Device.h>
 #include <Header.h>
 #include <Updater.h>
+
+// int main(int argc, char **argv)
+// {
+// 	char d_id[] = "123456";
+// 	char m_no[] = "1234567898765432";
+// 	Device * sim_device = new Device(d_id, m_no);
+// 	sim_device->SetPartition();
+// 	sim_device->DisplayDevice();
+	
+//   Device * copyDevice = new Device(*sim_device);
+// 	copyDevice->DisplayDevice();
+
+//   delete sim_device;
+//   delete copyDevice;
+// }
+
 
 int main(int argc, char **argv)
 {
@@ -10,15 +26,14 @@ int main(int argc, char **argv)
 	int choice = 0;
 	int j = 0;
 	Header *obj[argc-1] = {0};  //array of objects of Header
-	
-	
-	char d_id[] = "1EBH56";
-	char m_no[] = "1234567898765432";
-	Device * sim_device = new Device(d_id, m_no);
-	sim_device->SetPartition();
-	
 	Updater *updtr;
 
+	char d_id[] = "1EBH56";
+	char m_no[] = "1234567898765432";
+	Device * sim_device = new Device(d_id, m_no); //the simutlated device
+	sim_device->SetPartition();
+	sim_device->SetMemory();
+	
 	cout << "\n\n========================= AUTOMATIC IMAGE UPDATE SOFTWARE ============================" << endl << endl;
 	try{
 		
@@ -60,6 +75,7 @@ int main(int argc, char **argv)
 					case 2:
 						cout << "\n=================== Device details ========================" << endl;
 						sim_device->DisplayDevice();
+						//cout << "header len: " << sim_device->GetHeaderLength() << endl;
 						break;
 						
 					case 3:
@@ -69,8 +85,9 @@ int main(int argc, char **argv)
 							{
 								updtr = new Updater(sim_device, obj[j], argv[j+1]);
 								updtr->InstallDownload();
-								
+								//delete updtr;
 							}
+								
 						}
 						
 						break;
@@ -92,15 +109,25 @@ int main(int argc, char **argv)
 	catch(invalid_argument& ex){
 		cout << ex.what() << endl;
 	}
-	
-	//deleting header objects
-	for(int i = 0; i<argc-1; i++){
-		delete obj[i];
+	try{
+		//deleting header objects
+		for(int i = 0; i<argc-1; i++){
+			if(obj[i]!=nullptr)
+				delete obj[i];
+			else throw "No pointer to be freed";
+		}	
+		if(sim_device!=nullptr)
+			delete sim_device;
+		else throw "No pointer to be freed";
+
+	}
+	catch(const char * e)
+	{
+		std::cerr << e <<endl;
 	}
 	
-	//delete sim_device;
-	//delete updtr;
-
-
 	cout << "\n\n========================= CLOSING AUTOMATIC IMAGE UPDATE SOFTWARE ============================\n\n" << endl;
+	
+	delete updtr;
+	return EXIT_SUCCESS;
 }

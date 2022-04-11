@@ -9,7 +9,7 @@
 *****************************************************************************************/
 
 
-#include <device.h>
+#include <Device.h>
 
 /****************************************************************
 FUNCTION NAME   : Device(Device class parameterized constructor)
@@ -23,12 +23,22 @@ Device::Device(char* d_id, char* m_no)
 	long long int multiple = 120;
 	long long int megi = 1024*1024;
 	long int asize = (multiple*megi)/((long int) sizeof(char));
-	this->start_address = new char[asize];
+	try
+	{
+		
+		this->start_address = new char[asize];
+	}
+	catch (std::bad_alloc & ba)
+	{
+		std::cerr << "bad_alloc caught: " << ba.what();
+	}
+ 	
 	
     this->size = asize;
 	strcpy(this->Device_id, d_id);
 	strcpy(this->Magic_no, m_no);
 	this->header_length = SetHeader();
+	
 }
 
 /****************************************************************
@@ -42,9 +52,18 @@ Device::Device(const Device& toCopy)
     strcpy(this->Device_id, toCopy.Device_id);
     strcpy(this->Magic_no, toCopy.Magic_no);
     this->size = toCopy.size;
-    this->start_address = new char[this->size];
+	try
+	{
+		
+    	this->start_address = new char[this->size];
+	}
+	catch (std::bad_alloc & ba)
+	{
+		std::cerr << "bad_alloc caught while making device simulator : " << ba.what();
+	}
+	
     strncpy(this->start_address, toCopy.start_address, sizeof(char)*this->size);
-    SetPartition();
+	SetPartition();
 }
 
 /****************************************************************
@@ -83,13 +102,31 @@ void Device::SetPartition()
 	long long int p_size = ((this->size - this->header_length) * sizeof(char))/6;
 	
     this->partition_size = p_size;
+
 	this->partitions["boot image"] = (this->start_address + this->header_length);
-	this->partitions["application"] = (partitions["boot image"] + p_size); 
+	
+	this->partitions["application"] = (partitions["boot image"] + p_size);
+	
 	this->partitions["libraries"] = (partitions["application"] + p_size); 
+	
 	this->partitions["framework level"] = (partitions["libraries"] + p_size); 
+	
 	this->partitions["file system"] = (partitions["framework level"] + p_size);
+	
 	this->partitions["kernel module"] = (partitions["file system"] + p_size);
+	
 	//strcpy(this->partitions["kernel module"], "this is the basic initialisation");
+}
+
+void Device::SetMemory()
+{
+	unsigned long long int p_size = this->partition_size;
+	memset(this->partitions["boot image"], '\0', p_size);
+	memset(this->partitions["application"], '\0', p_size); 
+	memset(this->partitions["libraries"], '\0', p_size);
+	memset(this->partitions["framework level"], '\0', p_size);
+	memset(this->partitions["file system"], '\0', p_size);
+	memset(this->partitions["kernel module"], '\0', p_size);
 }
 
 /****************************************************************
@@ -127,6 +164,12 @@ void Device::SetSize(long int sz)
     this->size = sz;
 }
 
+/****************************************************************
+FUNCTION NAME   : GetStartAddress
+DESCRIPTION     : To get the start address
+PARAMETERS      : nil
+RETURN          : char *, start address
+****************************************************************/
 char * Device::GetStartAddress()
 {
 	return this->start_address;
@@ -187,6 +230,12 @@ unsigned long int Device::GetHeaderLength()
     return this->header_length;
 }
 
+/****************************************************************
+FUNCTION NAME   : GetPartitionSize
+DESCRIPTION     : To get partitions size
+PARAMETERS      : nil
+RETURN          : unsigned long int, the partition size
+****************************************************************/
 unsigned long int Device::GetPartitionSize()
 {
 	return this->partition_size;
@@ -199,20 +248,16 @@ RETURN          : nil
 ****************************************************************/
 void Device::DisplayDevice()
 {
+	//cout << "Part size: " << GetPartitionSize() << endl;
 	cout<< "Start of device : \t" << (void *)&this->start_address[0]<<endl;
-	cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<" : "<<this->partitions["boot image"]<<endl;
 	cout<< "application : \t\t" << (void *)this->partitions["application"]<<" : "<<this->partitions["application"]<<endl;
+	cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<" : "<<this->partitions["boot image"]<<endl;
 	cout<< "libraries : \t\t" << (void *)this->partitions["libraries"]<<" : "<<this->partitions["libraries"]<<endl;
 	cout<< "framework level : \t" << (void *)this->partitions["framework level"]<<" : "<<this->partitions["framework level"]<<endl;
 	cout<< "file system : \t\t" << (void *)this->partitions["file system"]<<" : "<<this->partitions["file system"]<<endl;
 	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<" : "<< this->partitions["kernel module"]<<endl;
 	
-	/*cout<< "boot image : \t\t" << (void *)this->partitions["boot image"]<<endl;
-	cout<< "application : \t\t" << (void *)this->partitions["application"]<<endl;
-	cout<< "libraries : \t\t" << (void *)this->partitions["libraries"]<<endl;
-	cout<< "framework level : \t" << (void *)this->partitions["framework level"]<<endl;
-	cout<< "file system : \t\t" << (void *)this->partitions["file system"]<<endl;
-	cout<< "kernel module : \t" << (void *)this->partitions["kernel module"]<<endl;*/
+	
     cout<< "End Address : \t\t"<<(void *)&(this->start_address[this->size-1])<<endl;
 	cout<< "Total Length : "<<this->size<<" bytes"<<endl;
 	
